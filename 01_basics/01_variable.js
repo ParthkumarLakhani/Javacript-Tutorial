@@ -94,3 +94,7 @@ if (1) {
   let phone = 'samsung-iphone-20';
 }
 
+
+/*
+Please Understood scope and Hoisting, TDZ and solev the question.
+*/
