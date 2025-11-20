@@ -1,5 +1,7 @@
 // variable
 
+//A variable is a name that refers to a value stored in memory.,    it store the value and pointing to memory address
+
 // const 1rew = "hi" not allowed
 // const @op = "hello" // not allowed
 
