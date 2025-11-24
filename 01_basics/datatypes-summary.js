@@ -197,3 +197,11 @@ JavaScript treats all callable objects as function.
 */
 
 
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+/*
+Stack (primitive)
+Heap (non-primitive)
+*/
+
+
