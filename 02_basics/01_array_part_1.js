@@ -133,6 +133,7 @@ const multiDimensional = [[1,2],[3,4],[5,6,7]];
 
 /*
 Flattening an array is the process of reducing the dimensionality of an array. Flattening is useful when you want to convert a multi-dimensional array into a one-dimensional array.
+you can also pass the infinity as depth to flatten the array completely.
 */
 
 
@@ -192,7 +193,7 @@ The difference between the new toSpliced() method and the old splice() method is
 
 
 const week = ['mon','tue','wen', 'thus', 'fri', 'sat', 'sun']
-console.log('\n original week = ', week);
+// console.log('\n original week = ', week);
 
 // console.log('\n week slice = ', week.slice(3));
 // console.log('\n week slice = ', week.slice(1,3)); //end index is not included
@@ -202,7 +203,7 @@ console.log('\n original week = ', week);
 // console.log('\n week slice = ', week.slice());
 
 
-console.log('\n after op week = ', week);
+// console.log('\n after op week = ', week);
 
 /*
 The slice() method slices out a piece of an array into a new array:
@@ -215,3 +216,93 @@ The slice() method does not remove any elements from the source array.
   shift unshift
   splice slice
 */
+
+
+
+
+const marvelHeroes = ['spiderman', 'ironman', 'thor', 'hulk', 'captain america'];
+const dcHeroes = ['batman', 'superman', 'flash']
+
+// marvelHeroes.push(dcHeroes)
+
+/*
+here push method take any kind of element like string, number, object, array etc and add at the end of array.
+so there are some cases we don't want.
+
+so to avoid that we can use concat method or 
+also easy way is using spread operator (...) like below
+*/
+
+// console.log('\n marvelheroes ===', marvelHeroes);
+// console.log('\n marvelheroes ===', marvelHeroes[5][1]); // that's how we can access the element of array which is added using push method.
+
+
+// const allHeroes = marvelHeroes.concat(dcHeroes); //concat method is used to merge two or more arrays. This method does not change the existing arrays, but instead returns a new array.
+// console.log('\n allHeroes ==', allHeroes);
+
+
+// const allNewHeroes = [...marvelHeroes, ...dcHeroes]; //spread operator (...) is used to expand or spread iterable elements like arrays or objects into individual elements.
+// console.log('\n allNewHeroes ==', allNewHeroes);
+
+/* What is difference between concat and spread operator ??
+  Both concat() and the spread operator (...) can be used to combine arrays in JavaScript, but they have some differences:
+  
+  1. Syntax
+  2. Mutability: Both are returning new arrays and do not modify the original arrays.
+  3. Performance: In most cases, both methods perform similarly for small to moderately sized arrays. 
+      However, for very large arrays, 
+          the spread operator may have a slight performance advantage due to its simpler syntax and reduced function call overhead.
+
+  4. Readability: The spread operator is often considered more readable and concise, especially when combining multiple arrays or adding elements to an array.
+
+*/
+
+
+
+
+
+// const newAnotherArray = ['parth', 'patel', 22]
+const newAnotherArray = "parth"
+// const newAnotherArray = {fristName: 'parth', lastName: 'patel', age: 22}
+
+// console.log('\n to check weather is array or not ==', Array.isArray(newAnotherArray));
+
+
+/* it use for the webscraping purpose when we get data from the web then we need to check weather it is array or not.
+Array.isArray() method checks whether the passed value is an array. It returns true if the value is an array; otherwise, it returns false.
+
+if it is not array then how will convert into array ??
+ FORMAT 1: Using Array.from() method
+  The Array.from() method creates a new, shallow-copied Array instance from an array-like or iterable object.
+  but here problem is when pass object it will return empty array.  why ?? because object is not iterable.
+
+ FORMAT 2: Using Spread Operator (...)
+  The spread operator (...) can be used to expand iterable elements like arrays or objects into individual elements.
+  but here problem is when pass object it will throw error. why ?? because object is not iterable.
+  
+  
+  then how can i pass object ??
+  FORMAT 3: Using Object.values() method
+    The Object.values() method returns an array of a given object's own enumerable property values, in the same order as that provided by a for...in loop.
+
+  
+  Array.of()
+    The Array.of() method creates a new Array instance from a variable number of arguments, regardless of number or type of the arguments.  
+
+
+*/
+
+// console.log('\n convert to array ==', Array.from(newAnotherArray));
+// console.log('\n convert to array ==', Array.from(Object.values(newAnotherArray)));
+
+let score1 = 100
+let score2 = 200
+let score3 = 300
+
+// console.log('\n convert multiple variable to array ==', Array.of(score1,score2,score3));
+// console.log('\n convert multiple variable to array ==', Array.of(score1,score2,score3, newAnotherArray));
+
+
+
+
+
