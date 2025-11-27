@@ -472,13 +472,13 @@ const aryIteration = [ 10, 12, 40, 5, 8, 20, 5 ]
 //----------------------------------------------spread and rest-------------------------------------------
 
 const newSpreadArray = [ 15, 10, 80, 50, 10 ]
-console.log('\n original spreadOP ==', newSpreadArray);
+// console.log('\n original spreadOP ==', newSpreadArray);
 
 const aryOp = [100,...newSpreadArray]
-console.log('\n original aryOp ==', aryOp);
+// console.log('\n original aryOp ==', aryOp);
 
 
-console.log('\n after spreadOP ==', newSpreadArray);
+// console.log('\n after spreadOP ==', newSpreadArray);
 
 /*
   original array is not modified
