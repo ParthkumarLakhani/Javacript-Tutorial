@@ -199,7 +199,8 @@ const week = ['mon','tue','wen', 'thus', 'fri', 'sat', 'sun']
 // console.log('\n week slice = ', week.slice(1,3)); //end index is not included
 // console.log('\n week slice = ', week.slice(0,3)); 
 // console.log('\n week slice = ', week.slice(-2)); 
-// console.log('\n week slice = ', week.slice(-3,-1)); 
+// console.log('\n week slice = ', week.slice(-3,-1));
+// console.log('\n week slice = ', week.slice(-3,-3)); 
 // console.log('\n week slice = ', week.slice());
 
 
@@ -244,6 +245,7 @@ also easy way is using spread operator (...) like below
 // const allNewHeroes = [...marvelHeroes, ...dcHeroes]; //spread operator (...) is used to expand or spread iterable elements like arrays or objects into individual elements.
 // console.log('\n allNewHeroes ==', allNewHeroes);
 
+
 /* What is difference between concat and spread operator ??
   Both concat() and the spread operator (...) can be used to combine arrays in JavaScript, but they have some differences:
   
@@ -251,9 +253,31 @@ also easy way is using spread operator (...) like below
   2. Mutability: Both are returning new arrays and do not modify the original arrays.
   3. Performance: In most cases, both methods perform similarly for small to moderately sized arrays. 
       However, for very large arrays, 
-          the spread operator may have a slight performance advantage due to its simpler syntax and reduced function call overhead.
+          the spread operator may have a slight performance advantage due to its simpler syntax and reduced function call overhead. and Spread copies elements directly into a new array
 
   4. Readability: The spread operator is often considered more readable and concise, especially when combining multiple arrays or adding elements to an array.
+
+  
+  
+  const a = [1, 2, 3];
+  const b = [4, 5, 6];
+  const c = [7, 8, 9];
+
+  const merged  = [...a, ...b, ...c];
+  const mergedd = a.concat(b, c);
+
+
+  Why is spread faster for Arrays?
+  ✔ Spread copies elements directly into a new array
+
+  It does not create intermediate objects.
+  ✔ concat() creates a new array internally and performs more checks:
+      Whether the argument is array or not
+      Whether it has symbolic species
+      Whether to flatten or not
+      Copies arrays one by one into another
+      Handles length checks
+  ➡ This makes it slightly slower in most cases.
 
 */
 

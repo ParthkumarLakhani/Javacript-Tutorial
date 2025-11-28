@@ -151,6 +151,65 @@ const strNew22 = new String('Hello')
 
 // console.log('\n concat================', str.concat(str1),str.concat(' ',str1), str.concat(' ',str1,' ',str2));
 
+/*Can i merge multiple string using spread ??
+
+yes, 
+
+const a = "Parth";
+const b = "Kumar";
+const c = "Patel";
+
+const ans = [...a, " ", ...b, " ", ...c].join("");
+console.log(ans);  // Parth Kumar Patel
+
+const vv = a.concat(' ',b,' ',c)
+console.log(vv);  // Parth Kumar Patel
+
+
+//IMPORTANT -- String only
+But we use concat for string [ Which one is faster? Spread (...) or concat() for strings ? ]
+
+concat() is faster.
+✅ Why concat() is faster?
+✔ Because strings are immutable in JavaScript.
+
+Whenever you use spread:
+[...a, ...b, ...c]
+  It breaks each string into characters → creates arrays → then join("") again creates a new string.
+
+  ➡ More steps
+  ➡ More memory
+  ➡ More CPU work
+
+🧠 What spread does behind the scenes:
+    Convert each string into individual characters.
+    Create an array for all characters.
+    Allocate memory for the array.
+    Copy characters one-by-one.
+    Finally join array elements back into a string.
+    
+  👉 Very expensive for large strings.
+
+
+🏎️ What concat() does:
+  a.concat(" ", b, " ", c);
+
+  It simply creates one new string, directly combining the inputs.
+    ➡ No array
+    ➡ No iteration
+    ➡ No character copying until final combine
+    ➡ Much fewer operations
+
+
+
+| Method            | Speed    | Memory Use | Internal Process     |
+| ----------------- | -------- | ---------- | -------------------- |
+| **concat()**      | **Fast** | Low        | Simple string merge  |
+| **Spread + join** | **Slow** | High       | Split → array → join |
+
+*/
+
+
 // console.log('\n trim, trimStart, trimEnd====', str.trim(), str.trimStart(), str.trimEnd());
 
 //**ECMAScript 2017 added two new string methods to JavaScript: padStart() and padEnd()
@@ -185,7 +244,7 @@ const strSearchMethod = 'Hello parth Hello Namste hELlo'
 console.log('\n strSearchMethod======', strSearchMethod, strSearchMethod.length);
 
 // console.log('\n indexOf===========', strSearchMethod.indexOf('Hello') ); //first occurrence of a string, or it returns -1 if the string is not found
-// console.log('\n indexOf===========', strSearchMethod.indexOf('Hello',6) ); //here seconnd parameter dosen't affect, The index at which to begin searching the String object
+// console.log('\n indexOf===========', strSearchMethod.indexOf('Hello',6), strSearchMethod.indexOf('Hello', -12) ); //here seconnd parameter dosen't affect, The index at which to begin searching the String object
 // console.log('\n lastIndexOf=======', strSearchMethod.lastIndexOf('h') ); //last occurrence of a string, or it returns -1 if the string is not found
 // console.log('\n lastIndexOf=======', strSearchMethod.lastIndexOf('e',15) ); // lastIndexOf() methods searches backwards (from the end to the beginning
 
@@ -195,6 +254,8 @@ console.log('\n strSearchMethod======', strSearchMethod, strSearchMethod.length)
 // console.log('\n indexOf===========', strSearchMethod.indexOf(/p/)); //cannot take powerful search values (regular expressions).
 
 /*
+ indexOf and lastIndexOf can't take -ve value if you pass it will return 0.
+
 what is difference between search() and indexOf() ??
 
 1. indexOf()

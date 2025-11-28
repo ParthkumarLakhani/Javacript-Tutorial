@@ -9,9 +9,10 @@ let balance = new Number(1000)
 const firstNumber = 9.89
 const secondNumber = 4.35
 
+// console.log('\n numbet to string ==', firstNumber.toString(), secondNumber.toString(2));
 /* NOTE 
-console.log('\n numbet to string ==', firstNumber.toString(1), secondNumber.toString(1));
-above line when run nin node evn it will throw error  [RangeError: toString() radix argument must be between 2 and 36]
+console.log('\n numbet to string ==', firstNumber.toString(), secondNumber.toString(1));
+above line when run nin node evn it will throw error  [RangeError: toString() radix argument must be between 2 and 36]// which is nothing but the base binary(2)
 
 but it will run in broweser console.
 
@@ -20,6 +21,31 @@ console.log(firstNumber.toFixed(0)) ===> 10
 
 console.log(secondNumber.toFixed(1)) ===> 4.3
 console.log(secondNumber.toFixed(0)) ===> 4
+*/
+
+/* what is difference console.log('\n numbet to string ==', firstNumber.toString(), (firstNumber).toString(), String(firstNumber), firstNumber.toString(4));
+const firstNumber = 255;  // Try with: 255, 10, NaN, null, undefined (some won't work)
+
+
+console.log('toString() method          :', firstNumber.toString());        // "255"
+console.log('(number).toString()        :', (firstNumber).toString());     // "255" (same)
+console.log('String(global function)    :', String(firstNumber));           // "255"
+console.log('toString(radix)            :', firstNumber.toString(4));       // "3333" (base-4!)
+
+
+| Method               | Converts Value?       | Safe for null/undefined? | Converts Base?       | Notes                           |
+| -------------------- | --------------------- | ------------------------ | -------------------- | ------------------------------- |
+| `num.toString()`     | Yes (number → string) | ❌ No                     | ❌ No (base optional) | Method on number object         |
+| `(num).toString()`   | Same as above         | ❌ No                     | ❌ No                 | Parentheses avoid syntax errors |
+| `String(num)`        | Yes (any → string)    | ✔ Yes                     | ❌ No                 | Safest, global function         |
+| `num.toString(base)` | Yes                   | ❌ No                     | ✔ Yes                 | Converts number to given radix  |
+
+
+
+String(value) is safer because it works for any value, including null and undefined.
+value.toString() is dangerous if the value might be null/undefined.
+toString(radix) is the only method that can convert numbers to different bases (binary, hex, etc.)
+Using (num).toString() avoids the parser error of writing 100.toString().
 
 */
 
@@ -44,7 +70,7 @@ Returns a string
 
 
 
-const accountBalance = 1000000
+const accountBalance = 100000
 // console.log('\n accountbalance =', accountBalance);
 // console.log('\n accountbalance =', accountBalance.toLocaleString('en-US')); //default is 'en-US'
 // console.log('\n accountbalance =', accountBalance.toLocaleString('en-IN')); //'en-IN' for Indian format
@@ -71,7 +97,7 @@ const ary = [4,5,6,8]
 
 //---------math with random----------
 
-console.log('\n Math with random ==', Math.random());
+// console.log('\n Math with random ==', Math.random());
 
 /*
 random() returns a floating-point, pseudo-random number in the range 0 to less than 1 (inclusive of 0, but not 1) with approximately uniform distribution over that range — which you can then scale to your desired range.
@@ -94,8 +120,8 @@ Why use Math.random()?
 */
 
 //if you want value between 0 to 9
-console.log('\n value between 0 to 9 ==', Math.random() * 10 );
-console.log('\n value between 1 to 9 ==', Math.floor((Math.random() * 10)) +1 );
+// console.log('\n value between 0 to 9 ==', Math.random() * 10 );
+// console.log('\n value between 1 to 9 ==', Math.floor((Math.random() * 10)) +1 );
 
 
 /*
@@ -110,6 +136,41 @@ const maxValue = 20  //9999
 const randomNumberIs = Math.floor(Math.random() * (maxValue - minValue + 1 )) + minValue //by hitesh
 console.log('\n randomNumberIs ==', randomNumberIs);
 
+/* What is difference between this two lines ??
+
+let minValue = 1;
+let maxValue = 4;
+
+version1[by parth]: buggy, bcz   maxValue - minValue = 3
+
+  Math.random() * 3     → gives values from 0 to 2.999...
+  Math.floor(...)       → gives 0, 1, or 2
+  Then + minValue (1)   → final result: 1, 2, or 3
+
+  Problem: 4 is never returned!   
+
+version1[by hitesh]: correct  bcz  maxValue - minValue + 1 = 4
+
+  Math.random() * 4     → 0 to 3.999...
+  Math.floor(...)       → 0, 1, 2, or 3
+  + minValue (1)        → 1, 2, 3, or 4
+
+*/
+
 
 const randomFourDigit = Math.floor(Math.random()*10000) //here you think that you will always get 4 digit but that not correct.
-console.log('\n randomFourDigit ==', randomFourDigit);
+// console.log('\n randomFourDigit ==', randomFourDigit);
+
+/*
+function alphaNumericOTP(length) {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let otp = "";
+  for (let i = 0; i < length; i++) {
+    otp += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return otp;
+}
+
+console.log(alphaNumericOTP(6)); // Example: a7Ds2Q
+
+*/
