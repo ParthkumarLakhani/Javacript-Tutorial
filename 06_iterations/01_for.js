@@ -52,6 +52,10 @@ const person = {
 // for (;;) {
 //   console.log("it will throw error");
 // }
+
+// for(;1>2;){  // 1 < 2
+//   console.log('fall up');
+// }
 //please check above line and run this
 
 
