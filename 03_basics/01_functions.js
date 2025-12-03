@@ -26,7 +26,21 @@ Functions help to:
 
 
 Types of Functions
-
+1. Named Function
+2. Anonymous Function
+3. Function Expression
+4. Arrow Function (ES6)
+5. Immediately Invoked Function Expression (IIFE)
+6. Callback Functions
+7. Constructor Function
+8. Async Function
+9. Generator Function
+10. Recursive Function
+11. Higher-Order Function
+12. Nested Functions
+13. Pure Functions
+14. Default Parameter Function
+15. Rest Parameter Function
 
 */
 

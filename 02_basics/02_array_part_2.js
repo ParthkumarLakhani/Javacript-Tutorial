@@ -508,4 +508,4 @@ const aryOp = [100,...newSpreadArray]
 */
 
 
-
+// also see the typed array
