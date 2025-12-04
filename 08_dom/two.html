@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dom With Hitesh</title>
+</head>
+
+<body style="background-color: black; color: aliceblue;">
+  <div class="parent">
+    <div class="day">Monday</div>
+    <div class="day">Tuesday</div>
+    <div class="day">Wednesday</div>
+    <div class="day">Thrusday</div>
+    <div class="day">Friday</div>
+    <div class="day">Saturday</div>
+    <div class="day">Sunday</div>
+  </div>
+</body>
+
+<script>
+  //parent - child
+  const parent = document.querySelector('.parent')
+
+  // console.log(parent);
+  // console.log(parent.children);
+  // console.log(parent.children[0], parent.children[1]);
+
+
+  // for (let i = 0; i < parent.children.length; i++) {
+  //   console.log(parent.children[i].innerHTML);
+  // }
+
+  // parent.children[0].style.color = 'green'
+
+  // for (let i = 0; i < parent.children.length; i++) {
+  //   console.log(parent.children[i].style.color = 'green')
+  // }
+
+  // console.log(parent.firstElementChild);
+
+  // console.log(parent.secondElementChild);   //not possible
+
+  // console.log(parent.lastElementChild);
+
+
+  //child - parent
+  const dayOne = document.querySelector('.day')
+  // console.log(dayOne);
+  // console.log(dayOne.parentElement);
+
+  //sibling -- 
+  // console.log(dayOne.nextElementSibling);
+  // console.log(dayOne.nextSibling);
+
+
+  // console.log(`Node ==`, parent.childNodes);     //questions
+
+
+
+
+</script>
+
+</html>
+
+
+
+<!-- Relation parent-child, child-child, child-parent 
+parent-child  not problem
+
+
+child to parent expensive
+because querySelector is expensive - traversing tree
+
+**important  childNodes -- if you look at the child(week) we have only 7 but then why it will return 15 ??
+ 
+Because childNodes includes EVERYTHING inside the element:
+  ✔ Element nodes
+  ✔ Text nodes
+  ✔ Line breaks (\n)
+  ✔ Spaces
+  ✔ Comments
+
+  But children includes ONLY: ✔ Element nodes (tags)
+
+-->
+
+
+

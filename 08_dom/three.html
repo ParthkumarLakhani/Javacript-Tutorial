@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dom with Hitesh</title>
+</head>
+
+<body style="background-color: black; color: aliceblue;">
+  
+</body>
+
+<script>
+  
+  const div = document.createElement('dive')
+  console.log(div);
+  div.className = "myClass"
+  div.id = Math.round(Math.random() * 10 + 1)
+  div.setAttribute("title","new title")
+  div.style.backgroundColor = "green"
+  
+  // div.innerText = "Dom with Hitesh"
+
+  const addText = document.createTextNode("Dom with Hitesh")
+  div.appendChild(addText)
+  
+  /*after doing this all of things but why it will not displayed on page ??
+  because you have created a div it present in the memory, so you have to attached with a page.
+  how can we attech to a page ??
+
+  */
+  
+  document.body.appendChild(addText)
+
+
+</script>
+
+</html>
+
+
+<!-- creating new element debate between 
+  div.innerText = "Dom with Hitesh"
+
+  const addText = document.createTextNode("Dom with Hitesh")
+  div.appendChild(addText)
+-->
+
+

@@ -1,0 +1,108 @@
+<!-- dom selectors, nodelists, and Html collections -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Learning</title>
+  <style>
+    .bg-black{
+      background-color: black;
+      color: white;
+    }
+  </style>
+</head>
+
+<body class="bg-black">
+  <div>
+    <h1 id="title" class="heading">DOM Learning</h1>
+    <h1 id="title" class="author">By Hitesh </h1>
+    <h2 >ipsum, dolor sit amet com</h2>
+    <h2 >ipsum, dolor sit amet com</h2>
+    <h2 >ipsum, dolor sit amet com</h2>
+    <h2 >ipsum, dolor sit amet com</h2>
+    <p id="parh1">Lorem ipsum, dolor sit amet consectetur <span style="display: none;"> test inner text</span> adipisicing elit.</p>
+    <ul>
+      <li class="list-item">apple</li>
+      <li class="list-item">banana</li>
+      <li class="list-item">caram</li>
+      <li class="list-item">graps</li>
+    </ul> 
+  </div>
+  
+</body>
+</html>
+
+
+<!-- 
+getElementById
+getElementsByClassName
+
+getAttribute
+setAttribute
+
+
+we generally access class using . and id #
+
+
+✅ 1. innerText
+
+    Returns only the visible text inside an element.
+    Respects CSS styles like
+    display: none, visibility: hidden, opacity: 0.
+    Triggers reflow because it checks layout and styling.
+    Slower than textContent.
+    Use when you want exactly what is visible to the user.
+
+
+
+✅ 2. textContent
+
+    Returns all the text, even if some elements are hidden.
+    Does NOT check CSS or layout → very fast.
+    Does NOT interpret HTML tags.
+    Safe to use for plain-text operations.
+
+
+✅ 3. innerHTML
+
+    Returns HTML + text (the entire markup inside the element).
+    Can also insert HTML into the element.
+    Useful for dynamic UI rendering.
+    ⚠️ Not safe with user-input → can cause XSS attacks.
+
+
+
+| Property        | What It Returns   | Shows Hidden Text? | Reads HTML Tags? | Speed  |
+| --------------- | ----------------- | ------------------ | ---------------- | ------ |
+| **innerText**   | Visible text only | ❌ No               | ❌ No           | Slow   |
+| **textContent** | All text          | ✅ Yes              | ❌ No           | Fast   |
+| **innerHTML**   | HTML + text       | ✅ Yes              | ✅ Yes          | Medium |
+
+
+📌 When to Use?
+✔ Use textContent
+  For fast, safe plain text (recommended in most cases).
+
+✔ Use innerText
+  When you want exactly what appears on the screen.
+
+✔ Use innerHTML
+  When you need to create or read HTML structure.
+
+
+
+
+querySelector    -- return 1st item 
+
+querySelectorAll   -- return all item     like NodeList [li,li,li]    
+  it's look like an array but it is not array. there are some method you can use but it is not array. you have to convert to array then you can use it.
+
+** when you see NodeList, HTML Collections,.... it's not pure array.
+
+NodeList and HTML Collection both are different
+
+
+
+-->
+
