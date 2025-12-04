@@ -148,4 +148,30 @@ const myLang = [
 //   console.log(`${item.languageFileName} for ${item.languageName}`);
 // })
 
+// const lang = myLang.forEach( (item) => 
+//   console.log(`${item.languageFileName} for ${item.languageName}`)
+// )
+
+// const lang = myLang.forEach( (item) => {
+//   console.log('\n item ==', item.languageFileName);
+//   return item.languageFileName
+// })
+
+const lang = myLang.forEach( (item) => {
+  if(item.languageFileName === 'java'){
+    item.languageFileName = '.java'
+  }
+  return item.languageFileName
+})
+
+console.log(lang);
+
+
+
+console.log('\n myLang ==',myLang);
+
+/*
+foreach will not return anything, it's return undefined if you hold the variable
+it will modifie original array
+*/
 
