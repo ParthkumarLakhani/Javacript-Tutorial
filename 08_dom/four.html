@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dom with Hitesh</title>
+</head>
+
+<body style="background-color: black; color: aliceblue;">
+
+  <ul class="language">
+    <li>Javascript</li>
+  </ul>
+
+</body>
+
+<script>
+
+  function addLanguage(lang) {
+    const li = document.createElement('li')
+    li.innerHTML = `${lang}`
+    document.querySelector(".language").appendChild(li)
+  }
+  addLanguage("Typescript")
+  addLanguage("python")
+  
+  /*above there is problem,
+  In the above code, every time we call appendChild, the browser has to walk through the DOM to find the end of the list. This is fine for a few items, but if we were adding hundreds or thousands of elements, repeatedly traversing the DOM would become slow and inefficient.
+  */
+
+  function addOptiLanguage(lang){
+    const li = document.createElement('li')
+    li.appendChild(document.createTextNode(lang))
+    document.querySelector(".language").appendChild(li)
+  }
+  addOptiLanguage('golang')
+  //this above code is optimise
+
+
+
+  //edit
+  const secondChild = document.querySelector("li:nth-child(2)")
+  // console.log(secondChild);
+  // secondChild.innerHTML = "Mojo"      //not optimised apporach
+
+  const newLi = document.createElement("li")
+  newLi.textContent = "Mojo"
+
+  secondChild.replaceWith(newLi)
+
+  //edit
+  // const firstChild = document.querySelector("li:nth-child(1)")
+  const firstChild = document.querySelector("li:first-child")
+  // console.log(firstChild);
+  firstChild.outerHTML = "<li>java-script</li>"
+  
+
+  //remove
+  const lastChild = document.querySelector("li:last-child")
+  // console.log(lastChild);
+  lastChild.remove()
+
+
+</script>
+
+</html>
+
+
+<!-- edit and remove element -->
