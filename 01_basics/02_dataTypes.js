@@ -4,9 +4,9 @@
 
 ** primitives:
 1. String ==> ""/''
-2. Number ==> 1235   something like 2 to the power 53
+2. Number ==> 1235   something like 2 to the power 53 --- 64-bit Floating Point 
 3. Boolean ==> true/false
-4. BigInt ==> number is big then you use this
+4. BigInt ==> number is big then you use this       -------- BigInt size is NOT fixed. It uses arbitrary precision, meaning: Memory grows based on the digits you store.More digits → more bytes used.
 5. Null ==> represent empty value
 6. Undefined ==> value not assign then it's undefined
 7. Symbol ==> for the uniqueness and immutable

@@ -8,9 +8,13 @@
 // console.log("5" > "20");
 
 // console.log(2 < "12");
-console.log("2" < "12");
-console.log("2" > "12");
-console.log("2" == "12");
+// console.log("2" < "12");
+// console.log("2" > "12");
+// console.log("2" == "12");
+
+
+// console.log("2ghg" == 12);
+// console.log("2ghg" > 12);
 
 /*
 When comparing a string with a number, JavaScript will convert the string to a number when doing the comparison. An empty string converts to 0. A non-numeric string converts to NaN which is always false.

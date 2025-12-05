@@ -110,7 +110,7 @@ Take symbol add to object keys and print them ??
 
 
 
-/* IMPORTANT
+/* ***********IMPORTANT
 ✅ Why Literals Are Faster Than Constructor Methods in JS?
 
   Literals
@@ -138,5 +138,12 @@ Take symbol add to object keys and print them ??
 
   Use literals ([], {}) instead of constructors (new Array(), new Object()) because they are faster, cleaner, and more optimized.
 
+  
+  *******
+  Now a days, js engine(chrome)/ node so optimised Both literal and constructor appear almost same speed → difference ≈ 0.
+  But when you test in loops (1000, 10k, 1M iterations): literal is consistently faster. constructor slower.
+
+General JS Tip: creation is not a bottleneck. Focus on loops, DOM access, or network I/O for real perf gains.
+please check bottleneck file
 */
 

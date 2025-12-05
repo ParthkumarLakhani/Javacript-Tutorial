@@ -135,7 +135,7 @@ const strNew22 = new String('Hello')
 //4 methods for extracting string characters:
 // console.log('\n at ============== ', str.at(4),str.at(-5),str.at(-15), typeof str.at(-15)); //-+ ve both index allow    //if no value found then it will return 'undefined'
 // console.log('\n charAt ============== ', str.charAt(12)); //-ve index not allow    //if no value found or -ve index then it will return empty
-// console.log('\n charCodeAt =========== ', str.charCodeAt(6)); // give UTF-16 code
+// console.log('\n charCodeAt =========== ', str.charCodeAt(6)); // give UTF-16 code //if -ve index then it will return NaN
 // console.log('\n Access using [ ] ============= ', str[0], str[15], str[14]); //-ve index not allow //if no value found then it will return empty
 
 //extracted part string.

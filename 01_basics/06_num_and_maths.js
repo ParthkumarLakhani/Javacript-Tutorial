@@ -33,8 +33,8 @@ console.log('String(global function)    :', String(firstNumber));           // "
 console.log('toString(radix)            :', firstNumber.toString(4));       // "3333" (base-4!)
 
 
-| Method               | Converts Value?       | Safe for null/undefined? | Converts Base?       | Notes                           |
-| -------------------- | --------------------- | ------------------------ | -------------------- | ------------------------------- |
+| Method               | Converts Value?       | Safe for null/undefined?  | Converts Base?        | Notes                           |
+| -------------------- | --------------------- | ------------------------  | --------------------  | ------------------------------- |
 | `num.toString()`     | Yes (number → string) | ❌ No                     | ❌ No (base optional) | Method on number object         |
 | `(num).toString()`   | Same as above         | ❌ No                     | ❌ No                 | Parentheses avoid syntax errors |
 | `String(num)`        | Yes (any → string)    | ✔ Yes                     | ❌ No                 | Safest, global function         |
@@ -174,3 +174,4 @@ function alphaNumericOTP(length) {
 console.log(alphaNumericOTP(6)); // Example: a7Ds2Q
 
 */
+
