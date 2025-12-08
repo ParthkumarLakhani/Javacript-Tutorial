@@ -2,8 +2,10 @@
 object is collection of key value pair.  
 
 Object declare in two ways
-1. Object.create()
-2. using literals
+1. Object.create()   -- Factory method/Prototype creation method
+2. {}  --- using literals
+3. new Object()    -- constructor method
+
 
 singleton
   A singleton in JavaScript is an object that is created only once, and everywhere in the program you use the same shared instance.
