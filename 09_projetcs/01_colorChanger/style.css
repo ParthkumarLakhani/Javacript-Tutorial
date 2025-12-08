@@ -1,0 +1,60 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  background: #212121;
+  padding: 15px 20px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 18px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* Main canvas */
+.canvas {
+  margin: 80px auto;
+  width: 80%;
+  text-align: center;
+}
+
+.button-container {
+  margin: 30px 0;
+}
+
+/* Color Buttons */
+.button {
+  width: 100px;
+  height: 100px;
+  border: 2px solid black;
+  display: inline-block;
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+#grey {
+  background: grey;
+}
+
+#white {
+  background: white;
+}
+
+#blue {
+  background: blue;
+}
+
+#yellow {
+  background: yellow;
+}
