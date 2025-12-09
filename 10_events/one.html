@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html Events </title>
+</head>
+
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <!-- <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" onclick="alert('owl clicked')" ></li> -->
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+
+<script>
+
+//2
+  // document.getElementById('owl').onclick = function () {
+  //   alert('owl clicked')
+  // }
+
+
+//attachEvent() 
+//jQuery - on 
+
+//3
+// document.getElementById('owl').addEventListener("click", function () {
+//  alert("owl clicked it") 
+// })
+
+// document.getElementById('owl').addEventListener("click", function (e) {
+//   console.log(e);
+// })
+
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------
+
+// document.getElementById('images').addEventListener("click", function (e) {
+//   console.log("clicked inside the ul");
+// }, fale)
+
+// document.getElementById('owl').addEventListener("click", function (e) {
+//   console.log("owl clicked");
+// }, true)
+
+//-------------------------------------------------------------------------------------------------------------------------------
+
+
+//-------------------------------------------------------------------------------------------------------------------------------
+
+// document.getElementById('images').addEventListener("click", function (e) {
+//   console.log("clicked inside the ul");
+// }, false)
+
+// document.getElementById('owl').addEventListener("click", function (e) {
+//   console.log("owl clicked");
+//   e.stopPropagation()
+// }, false)
+
+//-------------------------------------------------------------------------------------------------------------------------------
+
+
+//-------------------------------------------------------------------------------------------------------------------------------
+// document.getElementById('google').addEventListener("click", function (e) {
+//   console.log("google clicked");
+//   e.preventDefault()
+//   e.stopPropagation()
+// },false)
+
+//-------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//------------------------------remove image-------------------------------------------------------------------------------------------------
+ const images = document.querySelector('#images').addEventListener("click", function (e) {
+  
+  // console.log(e);
+  // console.log(e.target);
+  // console.log(e.target.parentNode);
+  
+  
+  // let removeIt = e.target.parentNode
+  // removeIt.remove()
+  // removeIt.parentNode.removeChild(removeIt)
+  
+  //above both method fine but problem is when user click on li it will remove all.
+  
+  
+  console.log(e.target.tagName);
+
+  if(e.target.tagName === "IMG"){
+    let removeIt = e.target.parentNode
+    removeIt.remove()
+  }
+
+ }, false)
+
+
+
+
+</script>
+
+</html>
+
+
+<!-- events
+
+JavaScript Events are actions or occurrences that happen in the browser. They can be triggered by various user interactions or by the browser itself.
+  For example:
+    The user selects, clicks, or hovers the cursor over a certain element.
+    The user presses a key on the keyboard.
+    The user resizes or closes the browser window.
+    A web page finishes loading.
+    A form is submitted.
+    A video is played, paused, or ends.
+    An error occurs.
+
+
+in js, if there is any event it will run sequentially.
+
+
+
+
+1. common thing for event
+  direclty write into a li element.      this is apporach is not physible because when we large scale project.
+  react is different scenario
+
+  2. see 
+  this apporach will also give less feature 
+
+  3. best approach.   use eventLister will also get a propagation ability
+
+IMPORTANT  
+  what is eventListner ??
+    The addEventListener() method is used to attach an event handler to an element in the DOM (Document Object Model). It listens for specific events (such as click, keydown, or submit) on that element and executes a function when the event occurs.
+
+
+Syntax:      element.addEventListener(event, function, useCapture);            //useCapture by default is false 
+
+  element: The DOM element you want to listen for events on (for example, document, button, div).
+  event: The type of event you want to listen for, such as 'click', 'keydown', 'submit', etc.
+  function: The function to be executed when the event is triggered. It could be an anonymous function or a reference to a named function.
+  useCapture (optional): A boolean value that specifies whether to use event capturing.
+
+
+How addEventListener() Works?
+When you use addEventListener(), you’re essentially telling JavaScript to "watch" for a specific event on an element. Here's how it works:
+
+Choose an element: We need to select the element we want to attach an event to.
+Specify the event type: This could be any event like click, hover, keyup, etc.
+Define the action: Provide the function that should run when the event happens.
+
+Note => The event listener continuously checks for the occurrence of the specified event, and once it happens, the corresponding function is executed.
+
+
+please check what is inside the event (console.log(e))
+
+what should you read about event?
+    // type, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget,
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+
+Event propagation ??
+  there is two context of event propagation 1. event bubbling and 2. event capturing.
+  
+Event Propagation determines in which order the elements receive the event. There are two ways to handle this event propagation order of HTML DOM is Event Bubbling and Event Capturing.  
+
+
+Bubbling (useCapture: false)
+When an event happens on a component, it first runs the event handler on it, then on its parent component, then all the way up on other ancestors' components. By default, all event handles through this order from center component event to outermost component event. [bottom to top]
+
+
+Capturing (useCapture: true)
+It is the opposite of bubbling. The event handler is first on its parent component and then on the component where it was actually wanted to fire that event handler. In short, it means that the event is first captured by the outermost element and propagated to the inner elements. It is also called trickle down. [top to bottom]
+
+-->
