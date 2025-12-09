@@ -1,0 +1,54 @@
+/* Basic Reset */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Background + text color */
+body {
+  background-color: #212121;
+  color: #fff;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #000;
+  padding: 15px 20px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 18px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* Main Center Box */
+.center {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#banner span {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+/* Digital Clock Box */
+#clock {
+  font-size: 40px;
+  background-color: orange;
+  padding: 20px 50px;
+  margin-top: 15px;
+  border-radius: 10px;
+  color: black;
+  font-weight: bold;
+}
