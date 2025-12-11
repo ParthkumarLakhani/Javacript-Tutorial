@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function-API's Level</title>
+</head>
+
+<body style="background-color: #414141; color: aliceblue;">
+  <h1>setTimeout and clearTimeout</h1>
+  <button id="stop">Stop</button>
+</body>
+
+<script>
+  
+  // setTimeout(function () {
+  //   console.log("Hello bhai");
+  // },2000)
+
+
+  // const updateTest = function (params) {
+  //   document.querySelector('h1').innerHTML = 'setTimeout'
+  // }
+  // setTimeout(updateTest,2000)
+
+
+  //---- we don't use like this  clear interval. doesn't make sense --------------------
+
+  // const updateTest = function (params) {
+  // document.querySelector('h1').innerHTML = 'setTimeout'
+  // console.log("hinja");
+  // }
+  
+  // const stopChangeText = setTimeout(updateTest,2000)
+
+  // clearTimeout(stopChangeText)
+
+  //-------------------------------------------------------------------
+
+
+  const updateTest = function (params) {
+    document.querySelector('h1').innerHTML = 'setTimeout'
+  }
+  
+  const stopChangeText = setTimeout(updateTest,2000)
+
+  document.querySelector("#stop").addEventListener("click", function (e) {
+    clearTimeout(stopChangeText)
+    // clearInterval(stopChangeText)
+    console.log("stopped");
+  })
+
+
+
+</script>
+
+</html>
+
+
+
+
+<!-- setTimeout and setInterval, clearTimeout and clearInterval
+
+it's not core js function. it will get through like browser enviroment, node ,... 
+
+The setTimeout() method of the Window interface sets a timer which executes a function or specified piece of code once the timer expires.
+The clearTimeout() method of the Window interface cancels a timeout previously established by calling Window.setTimeout().
+
+In JavaScript, the setTimeout() function schedules a function to run once after a specified delay, and the clearTimeout() function cancels that scheduled execution before it occurs.
+
+setTimeout(function, delay, ...args)
+
+The setTimeout() method is used to execute a function one time after a specified number of milliseconds. 
+
+function:     The function to be executed. It can be a named function or an anonymous/arrow function.
+delay:    The time, in milliseconds (1000ms = 1 second), to wait before executing the function. If set to 0, it runs as soon as possible after the current script finishes.
+...args (Optional):     Additional arguments passed directly to the function when it is executed. 
+
+setTimeout() returns a unique positive integer or a timer object (the "timeout ID") that identifies the timer, which is used by clearTimeout()
+
+
+
+
+clearTimeout(timeoutId)
+
+The clearTimeout() method cancels a timeout that was previously established by setTimeout(). 
+timeoutId: The identifier returned by the corresponding setTimeout() call.
+
+return undefined
+If the timeout has already executed or the ID is invalid, clearTimeout() does nothing. 
+
+-->
+

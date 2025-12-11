@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function-API's Level</title>
+</head>
+
+<body style="background-color: #414141; color: aliceblue;">
+  <h1>setInterval and clearInterval</h1>
+  <button id="start">Start</button>
+  <button id="stop">Stop</button>
+</body>
+
+<script>
+
+  // setInterval(function () {
+  //   console.log('hi helloo ', Date.now());
+  // },2000)
+
+  // const updateText = function (str) {
+  //   document.querySelector("h1").innerHTML = "Set - Interval"
+  //   console.log("updated--",str);
+  // } 
+  // setInterval(updateText,2000,"parth")
+
+  
+  let stoped
+
+  const updateText = function (str) {
+    document.querySelector("h1").innerHTML = "Set - Interval"
+    console.log("updated--",str);
+  }
+  
+  document.querySelector("#start").addEventListener("click", function (e) {
+    stoped = setInterval(updateText,2000,"parth")
+    console.log("start");
+  })
+  
+
+  document.querySelector('#stop').addEventListener("click",function (e) {
+    clearInterval(stoped)
+    console.log("stopped");
+  })
+
+
+
+</script>
+
+</html>
+
+
+<!-- setInterval and clearInterval
+
+when we used setTimeout function, please check with clearTimeout and clearInterval
+
+
+The setInterval() method of the Window interface repeatedly calls a function or executes a code snippet, with a fixed time delay between each call.
+The clearInterval() method of the Window interface cancels a timed, repeating action which was previously established by a call to setInterval(). If the parameter provided does not identify a previously established action, this method does nothing.
+
+
+
+In JavaScript, setInterval() is a method for repeatedly executing a function at a specified time interval, while clearInterval() is used to stop that repetitive execution. 
+
+setInterval()
+
+The setInterval() method calls a function repeatedly, with a fixed time delay between each call. 
+
+Syntax: let intervalID = setInterval(function, milliseconds, [arg1, arg2, ...])
+Parameters:
+    function: The function to be executed repeatedly.
+    milliseconds: The time interval, in milliseconds (1000ms = 1 second).
+    arg1, arg2, ... (Optional): Additional arguments passed to the function.
+
+Return Value: It returns a unique positive integer intervalID (or "handle") that identifies the timer. You must save this ID to a variable to stop the interval later. 
+
+
+
+clearInterval()
+
+The clearInterval() method is used to cancel a timed, repeating action previously established by setInterval(). It does not stop the currently executing function, but prevents any future repetitions.
+
+  Syntax: clearInterval(intervalID)
+  Parameter:   intervalID: The identifier (the variable that stored the return value) of the interval you want to stop.
+
+Return Value: It does not return a value (undefined). 
+
+
+
+
+what is difference between clearTimeout and clearInterval ??
+
+1️⃣ clearTimeout()
+
+Used to stop a timeout created by setTimeout().
+setTimeout() runs only once after a delay.
+If you cancel it → the scheduled single execution never happens.
+
+
+2️⃣ clearInterval()
+
+Used to stop a repeated execution created by setInterval().
+setInterval() keeps running again and again until stopped.
+If you cancel it → the repeated loop stops.
+
+
+| Function              | Stops what?                            | Used with       |
+| --------------------- | -------------------------------------- | --------------- |
+| **clearTimeout(id)**  | Cancels a pending *one-time* execution | `setTimeout()`  |
+| **clearInterval(id)** | Stops a *repeated* execution loop      | `setInterval()` |
+
+
+
+-->
+
