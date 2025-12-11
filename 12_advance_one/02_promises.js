@@ -139,3 +139,32 @@ async function consumePromiseFive() {
 consumePromiseFive()
 
 // how handle promise ??  async/await , then catch
+
+
+
+
+// async function getAllUsers() {
+//   try {
+//     const response = await fetch("https://jsonplaceholder.typicode.com/users")
+//     // const data = response.json()
+//     const data = await response.json()
+//     console.log(data);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+
+// getAllUsers()
+
+
+
+// fetch("https://jsonplaceholder.typicode.com/users")
+fetch("https://api.github.com/users/ParthkumarLakhani")
+.then( (response) => {return response.json()})
+.then( (response) => console.log('data:',response))
+.catch( (error) => console.log(error))
+
+
+
+//if you look at the above code with fetch() it will execute first even though it will return in the last. why this happen ??
+// see next image, because fetch() has prority queue. it is more prior then task queue.
