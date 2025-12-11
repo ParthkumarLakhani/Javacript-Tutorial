@@ -1,0 +1,65 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: Arial, sans-serif;
+  background-color: #1c1c1c;
+  color: white;
+  height: 100%;
+}
+
+/* NAVBAR */
+.navbar {
+  background-color: #000;
+  padding: 15px 20px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 18px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* MAIN PROJECT AREA */
+.project {
+  height: calc(100vh - 60px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#insert {
+  font-size: 24px;
+}
+
+.key {
+  background-color: #333;
+  padding: 20px 40px;
+  border-radius: 10px;
+  border: 2px solid #555;
+  font-size: 28px;
+  color: white;
+}
+
+/* RESULT TABLE */
+table {
+  border: 1px solid #e7e7e7;
+  margin-top: 30px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #e7e7e7;
+  padding: 12px;
+}

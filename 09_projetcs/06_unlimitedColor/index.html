@@ -2,40 +2,73 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Number Guessing Game</title>
-
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function-API's Level</title>
 </head>
 
-<body>
-  <nav class="navbar">
-    <a href="/" aria-current="page">Home</a>
-    <a target="_blank" href="https://www.youtube.com">Youtube channel</a>
-  </nav>
-
-  <div id="wrapper">
-    <h1>Number Guessing Game</h1>
-
-    <p>Try and guess a random number between 1 and 100.</p>
-    <p>You have 10 attempts to guess the right number.</p>
-
-    <form class="form">
-      <label for="guessField" id="guess">Guess a number</label>
-      <input type="text" id="guessField" class="guessField" />
-      <input type="submit" id="subt" value="Submit guess" class="guessSubmit" />
-    </form>
-
-    <div class="resultParas">
-      <p>Previous Guesses: <span class="guesses"></span></p>
-      <p>Guesses Remaining: <span class="lastResult">10</span></p>
-      <p class="lowOrHi"></p>
-    </div>
-  </div>
-
-  <script src="guessTheNumber.js"></script>
+<body style="background-color: #414141; color: aliceblue;">
+  <h1>start should chagne the backgroung color every second</h1>
+  <button id="start">Start</button>
+  <button id="stop">Stop</button>
 </body>
+
+<script>
+
+  
+// const changeColor = function (){
+//   const colorCode = '0123456789ABCDEF'
+//   let color = "#"
+  
+//   for(let i = 0; i < 6; i++){
+//    color += colorCode[Math.floor(Math.random() * 16)]
+//   }
+//   document.querySelector("body").style.backgroundColor = color
+// }
+
+// let stopper
+
+// document.querySelector("#start").addEventListener("click", function (e) {
+//  stopper = setInterval(changeColor,1000)
+// })
+
+// document.querySelector("#stop").addEventListener("click", function (e) {
+//   clearInterval(stopper)
+// })
+
+
+
+
+
+
+//-------------------prodction level-----------------------
+
+const changeColor = function (){
+  const colorCode = '0123456789ABCDEF'
+  let color = "#"
+  
+  for(let i = 0; i < 6; i++){
+   color += colorCode[Math.floor(Math.random() * 16)]
+  }
+  document.querySelector("body").style.backgroundColor = color
+}
+
+let stopper
+
+document.querySelector("#start").addEventListener("click", function (e) {
+  if(!stopper){
+    stopper = setInterval(changeColor,1000)
+  }
+})
+
+document.querySelector("#stop").addEventListener("click", function (e) {
+  clearInterval(stopper)
+  stopper = null
+})
+
+
+
+
+</script>
 
 </html>
