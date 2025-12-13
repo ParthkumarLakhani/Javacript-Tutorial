@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React</title>
+</head>
+
+<body style="background-color: black; color: #000;">
+  <button>Button Clicked</button>
+</body>
+
+<script>
+
+  class React {
+    
+    constructor(){
+      this.library = "React"
+      this.server = "http://localhost:3000"
+
+      document.querySelector('button').addEventListener("click", this.handleClick)
+      // document.querySelector('button').addEventListener("click", this.handleClick())
+      // document.querySelector('button').addEventListener("click", this.handleClick.bind(this))
+
+    }
+
+    //requirement - when page is load - one object is created of react. and button no reference mali jay and clicked on this like submit form or ...
+
+    handleClick(){
+      console.log(`Button Clicked `);
+      console.log(this.server);
+      console.log(this);
+    }
+
+  }
+
+  const app = new React()
+
+</script>
+
+</html>
+
+
+
+<!-- Bind
+  in earlier of react lot's of used that. 
+
+  what is difference between all of this
+
+✅ 1️⃣ this.handleClick (function reference)
+  document.querySelector('button').addEventListener("click", this.handleClick)
+
+✔ What happens?
+  You are passing a reference to the function
+  Function is executed only when button is clicked
+
+❌BUT problem with this
+  When the button is clicked:
+  this === button element
+
+  So inside handleClick():
+  this.server ❌ undefined
+  this === <button>...</button>
+
+🔍 Why?
+  Because DOM event listeners bind this to the element that fired the event.  
+
+
+
+
+✅ 2️⃣ this.handleClick() (function execution immediately)
+  document.querySelector('button').addEventListener("click", this.handleClick())
+
+❌ This is WRONG
+✔ What happens?
+  this.handleClick() executes immediately during constructor execution
+  Its return value (undefined) is passed to addEventListener
+
+So effectively you are doing:
+  addEventListener("click", undefined)
+
+🧨 Result:
+  handleClick() runs once when page loads
+  Button click does nothing  
+
+
+
+
+✅ 3️⃣ this.handleClick.bind(this) (correct way)
+  document.querySelector('button').addEventListener("click", this.handleClick.bind(this))
+
+✔ What happens?
+  bind(this) creates a new function
+  That function’s this is permanently bound to the class instance
+
+🎉 Result on click:
+this === React instance
+this.server === "http://localhost:3000"
+
+
+This is the correct and expected behavior.
+
+
+
+
+| Code                          | When function runs | `this` inside handler | Correct? |
+| ----------------------------- | ------------------ | --------------------- | -------- |
+| `this.handleClick`            | On click           | `<button>`            | ❌       |
+| `this.handleClick()`          | Immediately        | `React` instance      | ❌       |
+| `this.handleClick.bind(this)` | On click           | `React` instance      | ✅       |
+
+
+
+handleClick = () => {
+  console.log(this.server);
+};
+
+Arrow functions do not have their own this, so they take this from lexical scope (class instance).
+
+✔ Final One-Line Answer (Interview Perfect)
+  this.handleClick → passes function reference, but this becomes the button
+  this.handleClick() → executes immediately, not on click
+  this.handleClick.bind(this) → binds this to class instance and works correctly
+
+
+
+In JavaScript, the difference between `this.handleClick`, `this.handleClick()`, and `this.handleClick.bind(this)` comes from **when the function is executed** and **what `this` refers to inside the function**. Passing `this.handleClick` to `addEventListener` gives only a function reference, so the function runs on button click, but `this` inside the handler points to the **button element**, not the class instance. Using `this.handleClick()` **calls the function immediately** while the constructor is running, and its return value (`undefined`) is passed to `addEventListener`, so nothing happens when the button is clicked. Using `this.handleClick.bind(this)` creates a new function where `this` is permanently bound to the **React class instance**, so the function runs only on click and can correctly access class properties like `this.server.
+  
+
+-->
