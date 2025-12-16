@@ -98,6 +98,109 @@ if (1) {
 
 
 /*
+40. Why var attaches to window?
+Because it's function/global scoped
+
+45. Memory allocation?
+var → global/function env
+let/const → block env
+
+*/
+
+/*
+why  var in loop?  - Single shared variable
+
+for (var i = 0; i < 3; i++) {
+    setTimeout(() => {
+        console.log(i); // What will this print?
+    }, 100);
+}
+
+Why this happens with var:
+  var is function-scoped, not block-scoped
+  The variable i is hoisted to the top of the function (or global scope)
+  There's only ONE i variable in memory for the entire loop
+  All iterations share this same variable
+  By the time the setTimeout callbacks execute, the loop has finished and i = 3
+
+// What JavaScript actually does with var:
+var i; // Hoisted: single variable created ONCE
+
+for (i = 0; i < 3; i++) {
+    // Each iteration modifies the SAME 'i'
+    setTimeout(() => {
+        console.log(i); // All callbacks reference the SAME 'i'
+    }, 100);
+}
+// Final value of i = 3  
+
+
+why let in loop?   - New variable per iteration
+
+for (let i = 0; i < 3; i++) {
+    setTimeout(() => {
+        console.log(i); // What will this print?
+    }, 100);
+}
+Why this happens with let:
+  let is block-scoped
+  JavaScript creates a NEW i variable for each iteration
+  Each iteration's callback "closes over" (captures) its own separate i
+  Even though the variable has the same name (i), they're different in memory
+
+
+// What JavaScript actually does with let:
+for (let i = 0; i < 3; i++) {
+    // JavaScript creates a NEW 'i' for each iteration
+    // Let's call them i0, i1, i2 in memory
+    
+    setTimeout(() => {
+        // Closure captures iteration's specific 'i'
+        console.log(i); // Each callback has its own 'i'
+    }, 100);
+}
+// No single 'i' exists after loop
+
+
+
+
+
+
+
+Step-by-Step Comparison
+With var (Shared Variable):
+
+// Step 1: Single 'i' created (hoisted)
+var i;
+
+// Step 2: Loop runs
+// Iteration 1: i = 0 → timeout scheduled (will log i later)
+// Iteration 2: i = 1 → timeout scheduled (will log i later)  
+// Iteration 3: i = 2 → timeout scheduled (will log i later)
+// Iteration 4: i = 3 → loop stops
+
+// Step 3: 100ms later, all timeouts execute
+// ALL see i = 3 (the final value)
+console.log(3); // 3 times
+
+
+
+With let (Per-Iteration Variables):
+// Step 1: Loop starts
+// Iteration 1: Creates i₀ = 0 → timeout captures i₀
+// Iteration 2: Creates i₁ = 1 → timeout captures i₁
+// Iteration 3: Creates i₂ = 2 → timeout captures i₂
+
+// Step 2: 100ms later, each timeout executes with its captured value
+// Timeout 1: has i₀ = 0
+// Timeout 2: has i₁ = 1
+// Timeout 3: has i₂ = 2
+
+
+*/
+
+
+/*
 Please Understood scope and Hoisting, TDZ and solev the question.
 
 TDZ:  
