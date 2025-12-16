@@ -99,4 +99,20 @@ if (1) {
 
 /*
 Please Understood scope and Hoisting, TDZ and solev the question.
+
+TDZ:  
+  A variable declared with let, const, or class is said to be in a "temporal dead zone" (TDZ) from the start of the block until code execution reaches the place where the variable is declared and initialized.
+
+
+  The Temporal Dead Zone (TDZ) in JavaScript is a period of time during a variable's lifecycle in which it cannot be accessed. This concept applies to variables declared with let and const keywords.
+
+
+  Explanation
+  When JavaScript code runs, the engine scans the code and "hoists" all variable and function declarations to the top of their scope.
+
+  var: Variables declared with var are hoisted and automatically initialized with undefined. They do not have a TDZ.
+  let and const: These variables are also hoisted, but they are not initialized. The TDZ is the time from the start of the block scope until the line of code where the variable is declared and a value is assigned (initialized) is executed. 
+  Attempting to access a variable while it is in the TDZ will result in a ReferenceError. This strict behavior helps developers write more predictable and less error-prone code by preventing the use of uninitialized variables, which was a common source of bugs with var.
+  
+  
 */
