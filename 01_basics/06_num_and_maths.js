@@ -77,6 +77,110 @@ const accountBalance = 100000
 
 
 
+/* isNaN
+
+Why does typeof NaN return "number" ??
+
+typeof NaN returns "number" because NaN is a special numeric value defined by the JavaScript specification, not because it behaves like a normal number.
+
+It represents an invalid or undefined numeric result. It is returned when a mathematical operation fails
+
+0 / 0          
+Math.sqrt(-1) 
+Number("abc")
+
+
+2️⃣ Why is NaN still a "number"?
+
+Because JavaScript follows the IEEE 754 floating-point standard, where:
+NaN is a valid numeric value inside the Number type
+
+So in JavaScript:
+There is only one numeric type → Number
+NaN, Infinity, -Infinity all belong to this type
+
+typeof 123        
+typeof Infinity  
+typeof NaN 
+
+NaN is not a separate data type
+It is a special value inside the Number type
+
+
+
+3️⃣ Important JavaScript Spec Reason (Core Reason)
+
+JavaScript internally represents numbers using IEEE 754 double-precision floating point.
+
+According to IEEE 754:
+NaN is a floating-point value
+It signals invalid numeric operations
+But it is still numerical in representation
+
+Hence:
+typeof NaN === "number" // true
+
+
+
+4️⃣ Weird but Important Behaviors of NaN
+  NaN is NOT equal to itself
+  NaN === NaN // false
+
+  Why?
+  NaN means “unknown value”
+  Two unknowns are never considered equal
+
+
+  You cannot detect NaN using ===
+  let x = NaN;
+
+  x === NaN
+
+
+
+5️⃣ Correct Ways to Check for NaN
+✅ Best (Recommended)
+Number.isNaN(value)
+
+
+✔️ Only returns true for actual NaN
+
+Number.isNaN(NaN)      
+Number.isNaN("abc")  
+
+
+
+6️⃣ Why didn’t JS make NaN its own type?
+
+Because:
+JavaScript was designed to be simple
+All numeric results must remain within the Number system
+Making NaN a different type would break math consistency
+
+Example:
+let result = Math.sqrt(-1);
+
+// If result wasn't a number → math chains would break
+result + 10 // still NaN, but valid numeric flow
+
+
+
+7️⃣ Mental Model (Very Important for Interviews)
+
+NaN is a number that represents a failed numeric operation
+
+  It is numeric
+  It propagates through calculations
+  It signals an error without throwing an exception
+
+
+8️⃣ Interview-Ready One-Liner ✅
+
+typeof NaN returns "number" because NaN is a special numeric value defined by IEEE 754 and belongs to JavaScript’s Number type, not a separate data type.
+
+*/
+
+
 
 
 

@@ -47,3 +47,21 @@ console.log(`\n typeof address = ${typeof address}    typeof(typeof address) = $
 console.log(`\n typeof email = ${typeof email}    typeof(typeof email) = ${typeof(typeof email)}`);
 console.log(`\n typeof fullName = ${typeof fullName}    typeof(typeof fullName) = ${typeof(typeof fullName)}`);
 console.log(`\n typeof person = ${typeof person}    typeof(typeof person) = ${typeof(typeof person)}`);
+
+console.log(`\n typeof NaN = ${typeof NaN}`);
+
+
+
+/*
+What is a function data type?
+Is function a primitive or object?
+What is Date object?
+What is Map?
+What is Set?
+Difference between Map and Object?
+Difference between Set and Array?
+What is WeakMap?
+What is WeakSet?
+*/
+
+
