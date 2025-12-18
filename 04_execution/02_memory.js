@@ -1,3 +1,153 @@
+// where var, let cand const store ??
+
+/*
+1️⃣ Memory Creation Phase (Before code runs)
+  When JS starts executing, it creates:
+
+  Execution Context
+    It has two main memory parts:
+      1.  Variable Environment
+      2.  Lexical Environment
+
+
+2️⃣ var — Where is it stored?
+  🔹 Global var
+    var a = 10;
+
+  Stored in:
+    Global Variable Environment
+    Also attached to Global Object
+
+  In browser: window.a // 10
+  In Node.js: global.a // 10
+
+  Hoisted and initialized with undefined
+
+
+
+  🔹 Function var
+  function test() {
+    var x = 20;
+  }
+
+  Stored in:
+    Function’s Variable Environment
+      NOT global
+
+
+
+
+
+
+3️⃣ let and const — Where are they stored?
+
+  Example:
+    let b = 20;
+    const c = 30;
+
+  Stored in:
+    Lexical Environment
+    NOT attached to global object
+
+  window.b 
+  window.c 
+
+
+  But:
+    b // 20
+    c // 30  
+
+
+  Why?
+    Because they are block-scoped, not object properties.
+
+
+
+
+4️⃣ Temporal Dead Zone (TDZ)
+  console.log(b); // ❌ ReferenceError
+  let b = 10;
+
+  Why?
+    Memory is allocated ✔️
+    But not initialized
+    Access before declaration = TDZ
+    Same for const
+
+
+
+
+5️⃣ Block Scope Example
+  {
+    let x = 10;
+    const y = 20;
+    var z = 30;
+  }
+
+
+  | Variable | Accessible outside block? |
+  | -------- | ------------------------- |
+  | `x`      | ❌ No                     |
+  | `y`      | ❌ No                     |
+  | `z`      | ✅ Yes                    |
+
+  Why?
+    let & const → block Lexical Environment
+    var → function/global scope
+
+
+
+6️⃣ Visual Memory Representation
+  🌍 Global Execution Context
+
+    Global Execution Context
+    │
+    ├─ Variable Environment
+    │   ├─ var a → undefined
+    │   ├─ var z → undefined
+    │
+    ├─ Lexical Environment
+    │   ├─ let b → <uninitialized> (TDZ)
+    │   ├─ const c → <uninitialized> (TDZ)
+    │
+    └─ Global Object
+        ├─ a
+        ├─ z
+
+
+
+
+7️⃣ Why let & const are NOT on Global Object?
+  Design Reasons:
+    Avoid accidental global pollution
+    Better memory safety
+    Prevent bugs caused by overwriting globals
+
+
+
+
+
+
+8️⃣ One-Line Summary (🔥 interview gold)
+
+  var is function-scoped and becomes a property of the global object, while let and const are block-scoped, stored in the lexical environment, and never attached to the global object.
+
+
+
+  
+| Keyword | Where it is stored                        | Attached to Global Object?  | TDZ    |
+| ------- | ----------------------------------------- | --------------------------  | -----  |
+| `var`   | Variable Environment (global or function) | ✅ Yes (in global scope)    | ❌ No  |
+| `let`   | Lexical Environment (block scope)         | ❌ No                       | ✅ Yes |
+| `const` | Lexical Environment (block scope)         | ❌ No                       | ✅ Yes |
+
+
+
+*/
+
+
+
+
 // How does JS engine optimize primitive vs reference types?
 // This is a core JavaScript engine + performance question (V8 / Node.js level). I’ll explain it step-by-step, from memory model → engine optimizations → real performance implications.
 
@@ -246,6 +396,62 @@ JavaScript engines optimize primitives by storing them directly, inlining values
 
 
 
+/* Does JS use pass-by-reference ?
+
+JavaScript uses pass by value for primitive types and pass by reference for objects — but that's a common oversimplification. Let's clarify:
+
+Primitive Types → Pass by Value
+When passing primitives (Number, String, Boolean, null, undefined, Symbol, BigInt), a copy of the actual value is passed:
+  
+  let a = 10;
+  let b = a;  // Copy of value (10)
+  b = 20;
+  console.log(a);  // 10 (unchanged)
+  console.log(b);  // 20
+
+  function change(val) {
+    val = 100;  // Changes local copy only
+  }
+  change(a);
+  console.log(a);  // 10 (unchanged)
+
+
+
+Objects → Pass by Reference Value (Shared Reference)
+Technically, JavaScript always passes by value, but for objects, the value is a reference (memory address). This is often called "pass by sharing" or "pass by reference value":
+
+
+  let obj1 = { name: 'Alice' };
+  let obj2 = obj1;  // Copy of reference (both point to same object)
+  obj2.name = 'Bob';
+  console.log(obj1.name);  // 'Bob' (changed!)
+
+  function changeName(obj) {
+    obj.name = 'Charlie';  // Modifies the shared object
+  }
+  changeName(obj1);
+  console.log(obj1.name);  // 'Charlie'
+
+  // BUT reassigning the parameter doesn't affect original reference
+  function reassign(obj) {
+    obj = { name: 'David' };  // Only local reference changes
+  }
+  reassign(obj1);
+  console.log(obj1.name);  // 'Charlie' (unchanged)
+
+
+Key Points:
+  Primitives: Passed by value (direct copies)
+  Objects: Passed by reference value (copies of references)
+
+Reassignment vs Mutation:
+  Mutating object properties affects the shared object
+  Reassigning a parameter creates a new local reference 
+
+
+So technically: JavaScript is always pass-by-value, but for objects, that value is a reference.  
+
+*/
 
 
 
