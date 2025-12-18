@@ -17,8 +17,25 @@
 // console.log("2ghg" > 12);
 
 /*
+Comparison Operators (> < >= <=)
+🔹 Rule:
+    If both are numbers → numeric comparison
+    If both are strings → lexicographical (dictionary order) -- ASCII
+    If mixed types → convert to number (if possible)
+
 When comparing a string with a number, JavaScript will convert the string to a number when doing the comparison. An empty string converts to 0. A non-numeric string converts to NaN which is always false.
+
+
+==  equality
+🔹 Rule:
+    tries to convert both values to the same type before comparing
+    if Both sides are numbers - Simple numeric comparison
+    if Both sides are strings - Character-by-character comparison
+    if One side string, other number - String is converted to number
+
 */
+
+
 
 // console.log("5" + 2); 
 // console.log("5" + true);
@@ -35,6 +52,13 @@ When comparing a string with a number, JavaScript will convert the string to a n
 // console.log(0 == false); 
 // console.log(" " + 0 == 0);
 
+// console.log("" == 0);
+// console.log(" " == 0);
+
+// console.log(false == 0);
+// console.log(false == "");
+// console.log([] == "");
+
 // console.log(null == undefined); 
 // console.log(null === undefined); 
 // console.log(null + 1);
@@ -48,11 +72,11 @@ When comparing a string with a number, JavaScript will convert the string to a n
 
 // console.log(null == false); 
 
-// == and comparision are treat differentaly.
-
 // console.log(undefined == 0);
 // console.log(undefined > 0);
 // console.log(undefined >= 0);
+
+// console.log(undefined == false);
 
 
 // console.log( NaN == 0);
@@ -60,12 +84,20 @@ When comparing a string with a number, JavaScript will convert the string to a n
 // console.log( NaN == NaN);
 // console.log( NaN === NaN);
 
+// console.log( [] + [] );
+// console.log( [1] + [2] );
+// console.log( [1] + [2,3] );
+// console.log( [1,2] + [2,3] );
 
-console.log( [] == [] );
-console.log( {} == {} );
-console.log( [] == ![] );
+// console.log( {} + {} );
+// console.log( {name: "parth"} + {name: "patel"} );
+// console.log( {name: "parth", fname: "kumar"} + {name: "patel"} );
 
-console.log( null + undefined );
+// console.log( [] == [] );
+// console.log( {} == {} );
+// console.log( [] == ![] );
+
+// console.log( null + undefined );
 
 
 /*Type coercion
@@ -82,26 +114,21 @@ Type coercion is the automatic or implicit conversion of values from one data ty
 
 
 /*
-
-"5" - 2
-"5" + 2
-"5" * 2
-true + 1
-null + 1
-undefined + 1
-[] + []
-{} + {}
-
-
-
 Why null == undefined is true?
+Because == (loose equality) performs type coercion using special rules.
+
+The important rule:  When comparing with ==, null and undefined are only equal to each other, and to nothing else.
+
+    null and undefined both mean "no value"
+So JS treats them as equal only in loose comparison.
+
+
 Why null === undefined is false?
+    Because === (strict equality) checks two things:  Type and Value
 
 
 Difference between Object.is() and === ?
-Why is NaN !== NaN?
-How do you compare two objects?
-How do you compare two arrays?
+Handles NaN and -0 correctly.
 
 */
 
