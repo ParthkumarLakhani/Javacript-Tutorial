@@ -181,6 +181,138 @@ typeof NaN returns "number" because NaN is a special numeric value defined by IE
 */
 
 
+/*  What is radix in parseInt() ?  and Why radix is important ?
+
+Radix is the base of the number system used to interpret a string in parseInt().
+parseInt(string, radix)
+
+
+| Radix | Number System          |
+| ----- | ---------------------- |
+| 2     | Binary (0–1)           |
+| 8     | Octal (0–7)            |
+| 10    | Decimal (0–9)          |
+| 16    | Hexadecimal (0–9, A–F) |
+
+
+parseInt("10", 10)  // 10   (decimal)
+parseInt("10", 2)   // 2    (binary)
+parseInt("10", 8)   // 8    (octal)
+parseInt("10", 16)  // 16   (hex)
+
+
+
+
+
+
+🔹 Why radix is IMPORTANT? (Very Important)
+
+
+1️⃣ Prevents unexpected bugs
+  Without radix
+  parseInt("08")  // 8  (today)
+
+  In old JS engines, this was treated as octal:
+  parseInt("08")  // 0 (BUG)
+  Leading 0 meant octal (0–7 only)
+
+  With radix
+  parseInt("08", 10)  // 8
+
+  ✔ Always safe
+  ✔ Always predictable
+
+
+
+
+2️⃣ JavaScript is loosely typed
+  Without radix, JS tries to guess the base:
+
+  0x → hexadecimal
+
+  leading 0 → octal (old behavior)
+
+  otherwise → decimal
+
+  parseInt("0x10")     // 16
+  parseInt("010")      // 10 (modern JS)
+
+
+  But guessing = 🚨 risk
+
+
+
+
+
+3️⃣ parseInt() stops parsing on invalid digits
+
+  Radix defines which digits are valid.
+
+  parseInt("101", 2)   // 5
+  parseInt("102", 2)   // 2  (stops at invalid "2")
+
+
+
+4️⃣ Makes code future-proof
+
+  ECMAScript specs evolved.
+  Old browsers ≠ New browsers.
+
+  parseInt(value, 10)
+
+  ✔ Works everywhere
+  ✔ Safe in Node.js & browsers
+  ✔ No ambiguity
+
+
+
+
+Radix specifies the base of the numeral system used by parseInt() to convert a string into an integer. It is important because, without radix, JavaScript may interpret the number in different bases, leading to inconsistent and buggy behavior.
+
+
+
+
+🔹 Common Mistakes 🚫
+
+  Using parseInt instead of Number
+  parseInt("10.5")  
+  Number("10.5")   
+
+
+  Forgetting radix in arrays
+  ["10", "10", "10"].map(parseInt)
+  // [10, NaN, 2] 
+
+  Why?
+  parseInt("10", 0) 
+  parseInt("10", 1)  
+  parseInt("10", 2) 
+
+  Fix
+  ["10", "10", "10"].map(v => parseInt(v, 10))
+
+  Fix
+  ["10", "10", "10"].map(v => parseInt(v, 10))
+
+
+
+
+🔹 Best Practices ✅
+
+  Always pass radix
+  Use Number() for full conversion
+  Use parseInt() only when parsing strings with text
+
+
+
+Radix removes ambiguity and guarantees correct numeric interpretation.  
+
+
+*/
+
+
+
+
 
 
 

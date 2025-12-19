@@ -1,6 +1,3 @@
-// console.log(2-2);
-// console.log(2*2);
-// console.log(2+2);
 
 // console.log("02" > 1);
 // console.log("2" > 1);
@@ -37,23 +34,17 @@ When comparing a string with a number, JavaScript will convert the string to a n
 
 
 
-// console.log("5" + 2); 
-// console.log("5" + true);
-
-// console.log("5" - 2); 
-// console.log("5" * 2); 
-// console.log("10" / "2");
-
 // console.log(Boolean("hello")); 
 // console.log(Boolean(0)); 
 // console.log(Boolean([]));
 
 // console.log(0 == "0"); 
 // console.log(0 == false); 
-// console.log(" " + 0 == 0);
 
 // console.log("" == 0);
 // console.log(" " == 0);
+// console.log(" " + 0 == 0);
+
 
 // console.log(false == 0);
 // console.log(false == "");
@@ -61,7 +52,7 @@ When comparing a string with a number, JavaScript will convert the string to a n
 
 // console.log(null == undefined); 
 // console.log(null === undefined); 
-// console.log(null + 1);
+
 
 // console.log(NaN == NaN); 
 // console.log(isNaN(NaN));
@@ -78,26 +69,151 @@ When comparing a string with a number, JavaScript will convert the string to a n
 
 // console.log(undefined == false);
 
-
 // console.log( NaN == 0);
 
 // console.log( NaN == NaN);
 // console.log( NaN === NaN);
 
-// console.log( [] + [] );
-// console.log( [1] + [2] );
-// console.log( [1] + [2,3] );
-// console.log( [1,2] + [2,3] );
-
-// console.log( {} + {} );
-// console.log( {name: "parth"} + {name: "patel"} );
-// console.log( {name: "parth", fname: "kumar"} + {name: "patel"} );
-
 // console.log( [] == [] );
 // console.log( {} == {} );
 // console.log( [] == ![] );
 
-// console.log( null + undefined );
+// console.log( +[] == 0 );
+// console.log( +[] === 0 );
+
+// console.log( +{} == NaN);
+// console.log( +{} === NaN );
+
+// console.log( "" - 1 == -1 );
+// console.log( "" - 1 === -1 );
+
+// console.log( " " - 1 == -1);
+// console.log( " " - 1 === -1);
+
+// console.log( "5" + + "5" == "55");
+// console.log( "5" + + "5" === "55");
+
+// console.log( true == "1");
+
+// console.log( false == [] );
+// console.log( false == {} );
+
+
+/* Why does +[] === 0 ?
+    Steps
+        Unary + → forces ToNumber
+        [] is an object → ToPrimitive
+            [] → ""
+        ToNumber:
+            Number("") → 0
+        
+    Result: 0   
+*/
+
+
+/* Why does +{} === NaN ?
+    Steps
+        Unary + → forces ToNumber
+        {} is an object → ToPrimitive
+            {} → "[object Object]"
+        ToNumber:
+            Number("[object Object]") → NaN
+        
+    Result: NaN  
+*/
+
+
+/* Why does "" - 1 === -1?
+    Steps
+        - operator → always numeric
+        ToNumber:
+            "" → 0
+        Calculation:
+           0 - 1 = -1      
+        
+    Result: -1 
+*/
+
+
+/* Why does " " - 1 === -1?
+    Steps
+        " " (space) is a string
+        ToNumber:
+            Number(" ") → 0
+        Calculation:
+           0 - 1 = -1  
+        
+    Result: -1
+    Whitespace is ignored in numeric conversion  
+*/
+
+
+/* Why does "5" + + "5" === "55"?
+    Steps
+        Unary + "5"
+            +"5" → 5
+        Now expression becomes:
+            "5" + 5
+        + with string → string concatenation
+            "5" + "5"
+        
+    Result: "55"  
+*/
+
+
+/* Why does true == "1" return true?
+    Steps (loose equality ==)
+        Boolean → ToNumber: true → 1
+        String → ToNumber:  "1" → 1
+        Compare:    1 == 1
+        
+    Result: true 
+*/
+
+
+/* Why does false == "" return true?
+    Steps (loose equality ==)
+        Boolean → ToNumber: false → 0
+        String → ToNumber:  "" → 0
+        Compare:    0 == 0
+        
+    Result: true
+*/
+
+
+/* Why does false == [] return true?
+    Steps
+        [] is object → ToPrimitive: [] → ""
+        Now:
+            false == ""
+        Boolean → ToNumber: false → 0
+        String → ToNumber:  "" → 0
+        Compare:    0 == 0
+        
+    Result: true
+*/
+
+
+/* Why does false == {} return false?
+    Steps
+        {} is object → ToPrimitive: {} → "[object Object]"
+        Now:
+            false == "[object Object]"
+        Boolean → ToNumber: false → 0
+        String → ToNumber:  Number("[object Object]") → NaN
+        Compare:    0 == NaN → false
+        
+    Result: false
+*/
+
+
+/*
+    OBJECT → ToPrimitive
+    NUMBER needed → ToNumber
+    STRING present with + → concatenation
+    == → coercion
+    === → no coercion
+*/
 
 
 /*Type coercion

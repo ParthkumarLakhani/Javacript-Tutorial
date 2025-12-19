@@ -217,9 +217,6 @@ JSON.stringify() removes undefined and functions because JSON is a strict data f
 
 
 
-
-
-
 /* Why is BigInt not supported in JSON?
 
 BigInt is not supported in JSON because JSON numbers are defined as IEEE-754 double-precision numbers, and allowing BigInt would break cross-language compatibility and numeric precision guarantees.
@@ -358,4 +355,236 @@ BigInt is not supported in JSON because JSON defines only one numeric type based
 
 */
 
+
+
+/* 1️⃣ What happens when you JSON.stringify() a value?
+
+JSON.stringify() converts a JavaScript value → JSON string
+using strict JSON rules (not JavaScript rules).
+ 
+JSON.stringify(value)
+
+
+| JS Value  | Result       |
+| --------- | ------------ |
+| Object    | JSON object  |
+| Array     | JSON array   |
+| String    | JSON string  |
+| Number    | JSON number  |
+| Boolean   | JSON boolean |
+| null      | null         |
+| undefined | removed   |
+| function  | removed   |
+| Symbol    | removed   |
+| BigInt    | error     |
+
+
+Example
+  JSON.stringify({
+    a: 1,
+    b: undefined,
+    c: function () {},
+    d: "hello"
+  });
+
+  Output
+  {"a":1,"d":"hello"}
+
+
+🚫 undefined & functions are silently dropped
+
+
+*/
+
+
+/* 2️⃣ How does JSON handle numbers?
+
+  JSON supports only one numeric type → Number
+
+  {
+    "age": 25,
+    "price": 99.99
+  }
+
+  Rules
+
+    Integers
+    Floating points
+    Negative numbers
+    NaN, Infinity, -Infinity
+
+  JSON.stringify(NaN)        // "null"
+  JSON.stringify(Infinity)  // "null"
+
+
+  JSON has no concept of special numeric values
+
+
+*/
+
+
+/* 3️⃣ How does JSON handle booleans?
+
+  JSON booleans are:
+    true
+    false
+
+  Example
+    JSON.stringify(true)   // "true"
+    JSON.stringify(false)  // "false"
+
+  Same as JS
+    No coercion
+    No quotes
+
+
+*/
+
+
+/* 4️⃣ Why does JSON remove undefined?
+  
+  Because JSON has no undefined type
+
+  JSON data types are fixed:
+    object
+    array
+    string
+    number
+    boolean
+    null
+
+  Example
+    JSON.stringify({ a: undefined, b: 1 })
+
+  In arrays
+    JSON.stringify([1, undefined, 3]) // [1,null,3]
+
+  Objects → remove key
+  Arrays → replace with null
+
+
+*/
+
+
+/* 5️⃣ Why does JSON remove functions ?
+
+  JSON is a data format, not a code format
+
+  Functions:
+    Are executable
+    Depend on scope & closures
+    Are not portable
+
+    JSON.stringify({
+      sayHi() { console.log("hi"); }
+    })
+    // {}
+
+
+  JSON is meant for data exchange, not behavior  
+
+
+*/
+
+
+/* 6️⃣ Why does JSON NOT support BigInt ?
+
+  Because JSON numbers are based on IEEE-754
+    JSON numbers map to JS Number
+    JS Number cannot safely represent BigInt
+    BigInt would break compatibility
+
+    JSON.stringify(10n)
+    //TypeError: Do not know how to serialize a BigInt
+
+  Workaround
+    JSON.stringify({ id: 10n.toString() })
+
+
+  JSON prioritizes cross-language compatibility
+
+*/
+
+
+/* 7️⃣ What happens when parsing invalid JSON ?
+  JSON.parse('{"a":1,}')
+
+  Result SyntaxError: Unexpected token }
+
+
+  Common invalid cases
+    Trailing commas
+    Single quotes
+    Comments
+    Undefined
+    Functions
+
+    JSON.parse("{ a: 1 }")  // ❌
+    JSON.parse("{'a':1}")  // ❌
+
+  JSON is stricter than JavaScript objects
+
+*/
+
+
+/* 8️⃣ What happens to Dates in JSON ?
+
+  Dates become strings
+    const obj = { date: new Date() };
+    JSON.stringify(obj);
+
+  Output
+  {"date":"2025-12-19T04:30:00.000Z"}
+
+
+  ✔ ISO string
+  ❌ Not a Date anymore
+
+  After parsing
+    const parsed = JSON.parse(json);
+    typeof parsed.date  // "string"
+
+  Fix
+  parsed.date = new Date(parsed.date);
+
+*/
+
+
+/* Summary
+
+| JS Type   | JSON Result |
+| --------- | ----------- |
+| Number    | Number      |
+| Boolean   | Boolean     |
+| String    | String      |
+| null      | null        |
+| undefined | ❌ removed   |
+| Function  | ❌ removed   |
+| Symbol    | ❌ removed   |
+| BigInt    | ❌ error     |
+| Date      | String      |
+
+
+*/
+
+
+
+/*
+
+Q: What happens during JSON.stringify()?
+JS values are converted into JSON-safe data, removing unsupported types.
+
+Q: Why does JSON remove undefined and functions?
+Because JSON is a pure data format and does not support them.
+
+Q: Why is BigInt not supported?
+JSON numbers are limited to IEEE-754 and must remain cross-language compatible.
+
+Q: What happens to dates?
+Dates become ISO strings and must be re-parsed manually.
+
+Q: What happens with invalid JSON?
+JSON.parse() throws a SyntaxError.
+
+*/
 
