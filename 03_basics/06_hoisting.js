@@ -104,13 +104,52 @@ The variable hello is hoisted, but it is not initialized until the assignment li
 
 
 
+// a = 10
+// let a
+// console.log(a);
+
+// a = 10
+// console.log(a);
+// let a
+
+/* let and const hoisted mean ??
+Why it happens
+
+  Hoisting with let: When you use let to declare a variable, the JavaScript engine hoists the declaration to the top of its scope. However, unlike var, it does not initialize it with undefined.
+
+  Temporal Dead Zone (TDZ): From the start of the block until the line let a is executed, the variable a exists in a "Temporal Dead Zone." During this time, you cannot read from or assign a value to it.
+
+  The Assignment: When the engine tries to execute a = 10, it sees that a local variable a is declared later in the same scope. Because that variable is still in the TDZ, it throws a ReferenceError instead of assigning the value. 
+
+
+
+The error in your code occurs because of how the JavaScript engine parses and executes your script. Even though you typed the code in one order, the engine processes it in two distinct phases:
+
+  1. The Creation Phase (Hoisting)
+    Before running a single line, the engine scans your code for declarations. When it sees let a, it "hoists" the variable name to the top of the scope. However, for let and const, it marks them as uninitialized.
+  2. The Execution Phase (ReferenceError)
+    The engine then starts executing the code line-by-line:
+    Line 1 (a = 10): The engine sees you are trying to assign a value to a. It knows a exists because of the hoisting phase, but since it hasn't reached the let a line yet, a is in the Temporal Dead Zone (TDZ).
+    The Result: Because you cannot access or assign to a let variable while it is in the TDZ, the engine throws a ReferenceError immediately. The rest of the code, including the console.log(a), is never reached.
+
+
+    
+
+Summary
+  The meaning of hoisting with let is that the engine binds the variable name to the current scope immediately, which is why it throws a ReferenceError (it knows a is there but locked) instead of quietly creating a global variable (which would happen without scope awareness/hoisting).
+
+
+*/
+
+
+
 /*
 
-| Keyword | Scope    | Hoisted         | TDZ | Reassign |
-| ------- | -------- | --------------- | --- | -------- |
-| var     | Function | Yes (undefined) | ❌   | ✅      |
-| let     | Block    | Yes (no value)  | ✅   | ✅      |
-| const   | Block    | Yes (no value)  | ✅   | ❌      |
+| Keyword | Scope    | Hoisted         | TDZ | Reassign | 	Initial Value       | 	Access before declaration? |
+| ------- | -------- | --------------- | --- | -------- | --------------------  | ---------------------------- |
+| var     | Function | Yes (undefined) | ❌   | ✅      | undefined             |                        
+| let     | Block    | Yes (no value)  | ✅   | ✅      | None (Uninitialized)  |
+| const   | Block    | Yes (no value)  | ✅   | ❌      | None (Uninitialized)  |
 
 */
 
