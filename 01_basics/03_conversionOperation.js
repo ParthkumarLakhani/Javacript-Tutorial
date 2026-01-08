@@ -297,18 +297,264 @@ const inc = 50
 
 // console.log( null + undefined );
 
-// console.log( [] + [] );
+// console.log( [] + [] );            //*
 // console.log( [1] + [2] );
 // console.log( [1] + [2,3] );
 // console.log( [1,2] + [2,3] );
 
-// console.log( {} + {} );
+// console.log( {} + {} );   //*
 // console.log( {name: "parth"} + {name: "patel"} );
 // console.log( {name: "parth", fname: "kumar"} + {name: "patel"} );
 
-// console.log( [] + {} );
-// console.log( {} + [] );
+// console.log( [] + {} );  //*
+// console.log( {} + [] );  //*
 
+// console.log( [] - [] );   //*
+// console.log( {} - {} );   
+// console.log( [] - {} );   
+// console.log( {} - [] );   
+
+/* for *
+
+First rule to remember (VERY important)
++ operator in JS
++ has two meanings:
+  Number addition
+  String concatenation
+
+If either operand becomes a string, JS switches to string concatenation.
+
+
+
+Second rule: How objects convert to primitives
+  When JS sees object + object, it must convert them to primitive values.
+
+  Internal process (simplified):
+  ToPrimitive(value)
+    → valueOf()
+    → if not primitive → toString()
+
+
+Conversion results you must memorize
+| Value | toString() result   |
+| ----- | ------------------- |
+| `[]`  | `""` (empty string) |
+| `{}`  | `"[object Object]"` |
+
+Why?
+  [].toString() → ""
+  {}.toString() → "[object Object]"
+
+
+
+Now let’s go line by line 🔍
+console.log([] + [])
+
+  + sees objects
+  Convert both to primitives
+  [] → ""
+  "" + ""
+  String concatenation  
+
+Result: ""  //chatgpt
+Result: ""  
+
+
+console.log({} + {})
+  
+  JS interprets the first {} as an empty block, not an object.
+  So it becomes: +{}
+  Now evaluate:
+    {} → "[object Object]"
+    Unary + tries to convert it to a number
+    Number("[object Object]") → NaN
+
+Result: NaN //chatgpt
+Result: [object Object][object Object]
+
+
+
+console.log([] + {})
+
+  [] → ""
+  {} → "[object Object]"
+  "" + "[object Object]"
+
+Result: "[object Object]" //chatgpt
+Result: "[object Object]"
+
+
+
+
+console.log({} + [])
+
+  {} + []
+  Interpreted as: + []
+
+  Now evaluate:
+    [] → ""
+    Number("") → 0
+
+Result: 0 //chatgpt
+Result: [object Object]
+
+
+Why YOUR output is different ??
+  They differ because JavaScript parsing rules change depending on where and how the code is executed.
+  This is one of the most confusing (and interview-famous) JS behaviors.
+
+  The real reason: {} can mean TWO things
+  {}   // can be:
+    1️⃣ an empty BLOCK statement
+    2️⃣ an object literal
+
+  JS decides based on position (parsing phase) — before any execution or coercion happens.
+
+
+
+  Why YOUR output is different
+
+  You most likely ran this inside:
+    console.log( {} + {} );
+  or in Node REPL / browser console, where expressions are expected.
+  
+  In that context:  {} is treated as an object literal, NOT a block.
+  
+  The output differs because {} can be parsed as a block or an object.
+  In expression contexts (like console.log), it’s an object;
+  in statement position, it’s a block.
+  
+
+/ please explain me when valueOf() and toString() used ?? both at a time used or only one used at a time ??
+
+valueOf() and toString() are NOT used together. JS calls one at a time, in a fixed order, and stops as soon as it gets a primitive value.
+
+  When a non-primitive comes in, JS first runs ToPrimitive.
+  Then it calls valueOf() or toString() based on the hint.
+  If it gets a primitive, it stops immediately.
+  If not, it tries the fallback method.
+
+
+How does JavaScript decide the hint  ?
+
+  The hint is NOT random. It is decided by the operator or context that is using the value.
+  JS already knows what it wants (number or string), so it passes that intent as the hint to ToPrimitive.
+
+  The 3 possible hints
+    "number"
+    "string"
+    "default"
+
+
+  1️⃣ Hint = "number"
+    Used when JS needs a numeric value
+
+    Operators / contexts:
+      Unary plus: +obj
+      Math ops: - * / % **
+      Comparisons: < > <= >=
+      Bitwise ops: | & ^
+      Number(obj)
+
+      Example:  +obj
+      Internal: ToPrimitive(obj, "number")
+
+  
+      
+  2️⃣ Hint = "string"
+
+    Used when JS needs text
+
+    Contexts:
+      String(obj)
+      Template literals: ${obj}
+      alert(obj)
+      DOM text
+      obj + ""
+
+      Example:  `${obj}`
+      Internal: ToPrimitive(obj, "string")   
+
+
+  3️⃣ Hint = "default"
+    Used when JS is unsure (ambiguous)
+
+    Contexts: 
+      Binary + (before it knows number vs string)
+      Loose equality: obj == primitive
+
+
+    Example:  obj + 1
+    Internal: ToPrimitive(obj, "default")
+
+    After primitive conversion, JS decides:
+      string concat OR
+      numeric addition
+
+
+
+Full hint decision table
+| Code           | Hint        |
+| -------------- | ----------- |
+| `+obj`         | `"number"`  |
+| `obj - 1`      | `"number"`  |
+| `obj * 2`      | `"number"`  |
+| `obj < 10`     | `"number"`  |
+| `String(obj)`  | `"string"`  |
+| `` `${obj}` `` | `"string"`  |
+| `obj + ""`     | `"string"`  |
+| `obj + obj`    | `"default"` |
+| `obj == 10`    | `"default"` |
+
+/
+
+
+
+The core rule (memorize this)
+  Except +, all mathematical operators in JavaScript force numeric conversion.
+
+Operators that ALWAYS convert to number
+  Arithmetic
+    -
+    *
+    /
+    %
+    **
+
+  Unary
+    +value (explicit number conversion)
+    -value
+
+  Comparison (numeric)
+    <
+    >
+    <=
+    >=
+
+  Bitwise
+    | & ^ << >> >>>
+
+
+
+
+  Why + is special 😈
+  + has two jobs:
+    Number addition
+    String concatenation
+
+  So JS must:
+    Convert both operands to primitive (ToPrimitive)
+    Check:
+      If either is string → concatenate
+      Else → numeric addition
+
+  That’s why + uses "default" hint first.    
+
+  Except +, all mathematical operators in JS perform numeric conversion.
+
+
+
+*/
 
 
 const x = 1;

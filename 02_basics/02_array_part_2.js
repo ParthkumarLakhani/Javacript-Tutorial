@@ -2,7 +2,9 @@ const fruits = ["graphs","Apple", "Orange","kiwi", "guava","Apple", "Mango","ojk
 // console.log('\n original array fruits ==', fruits, fruits.length);
 
 // console.log('\n indexOf fruits = ', fruits.indexOf('apple'), fruits.indexOf('Apple'), fruits.indexOf('Apple',2), fruits.indexOf('Apple',-1), fruits.indexOf('Apple',-3));
-// console.log('\n lastIndexOf fruits = ', fruits.lastIndexOf('apple'), fruits.lastIndexOf('Apple'), fruits.lastIndexOf('Apple',1), fruits.lastIndexOf('Apple',3), fruits.lastIndexOf('Apple',-1), fruits.lastIndexOf('Apple',-5));
+// console.log('\n lastIndexOf fruits = ', fruits.lastIndexOf('apple'), fruits.lastIndexOf('Apple'), fruits.lastIndexOf('Apple',1), fruits.lastIndexOf('Apple',3), fruits.lastIndexOf('Apple',-1), fruits.lastIndexOf('Apple',-5));   
+
+//* lastIndex
 
 /*
 indexOf

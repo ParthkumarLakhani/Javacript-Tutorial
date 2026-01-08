@@ -168,3 +168,60 @@ fetch("https://api.github.com/users/ParthkumarLakhani")
 
 //if you look at the above code with fetch() it will execute first even though it will return in the last. why this happen ??
 // see next image, because fetch() has prority queue. it is more prior then task queue.
+
+
+
+/* what is difference between this two function which is better for prod ??
+  async extractMedicalReport(file) {
+    try {
+      console.log(file.path);
+
+      
+      let data
+      const tempData = pdfText(file.path, async (err, pages) => {
+        if (err) throw err;
+        data = await pages.join('\n')
+        console.log(data);
+      });
+      console.log(`datad === `, data);
+      console.log(`tempData == `, tempData);
+      return data
+    } catch (error) {
+      throw error 
+    }
+  }
+
+
+
+  async extractMedicalReport(file){
+    return new Promise((resolve, reject) => {
+
+      // const pdfExtract = new PDFExtract();
+      // const options = { firstPage: 1, lastPage: 1 }; // narrow scope if you like
+
+      // pdfExtract.extract(file.path, options).then((data) => {
+      //   data.pages[0].content.forEach((item) => {
+      //     console.log(
+      //       `${item.str.padEnd(25)}`
+      //     );
+      //   });
+      // });
+
+
+      let data
+      pdfText(file.path, (err, pages) => {
+        if (err) {
+          return reject(err);
+        }
+        data = pages.join('\n');
+        console.log(data);
+      });
+      
+      resolve(data);
+    });
+  }
+
+*/
+
+
+

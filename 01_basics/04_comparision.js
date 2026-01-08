@@ -57,7 +57,7 @@ When comparing a string with a number, JavaScript will convert the string to a n
 // console.log(NaN == NaN); 
 // console.log(isNaN(NaN));
 
-// console.log(null == 0);
+// console.log(null == 0);  //*
 // console.log(null > 0);
 // console.log(null >= 0);
 
@@ -81,7 +81,7 @@ When comparing a string with a number, JavaScript will convert the string to a n
 // console.log( +[] == 0 );
 // console.log( +[] === 0 );
 
-// console.log( +{} == NaN);
+// console.log( +{} == NaN);   //*
 // console.log( +{} === NaN );
 
 // console.log( "" - 1 == -1 );
@@ -268,7 +268,7 @@ Syntax: Object.is(value1, value2)
 // console.log(Object.is(+0, -0));
 // console.log(Object.is(+0, 0));
 // console.log(Object.is(-0, 0));
-// console.log(Object.is(0n, -0n));
+// console.log(Object.is(0n, -0n));  //*
 
 // console.log( [1,2] == '1,2');
 // console.log( [1,2] === '1,2');
