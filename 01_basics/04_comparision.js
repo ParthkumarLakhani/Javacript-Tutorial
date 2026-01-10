@@ -50,7 +50,7 @@ When comparing a string with a number, JavaScript will convert the string to a n
 // console.log(false == "");
 // console.log([] == "");
 
-// console.log(null == undefined); 
+// console.log(null == undefined);   //*
 // console.log(null === undefined); 
 
 
@@ -71,7 +71,6 @@ When comparing a string with a number, JavaScript will convert the string to a n
 
 // console.log( NaN == 0);
 
-// console.log( NaN == NaN);
 // console.log( NaN === NaN);
 
 // console.log( [] == [] );
