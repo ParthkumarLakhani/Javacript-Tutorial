@@ -61,7 +61,7 @@ When comparing a string with a number, JavaScript will convert the string to a n
 // console.log(null > 0);
 // console.log(null >= 0);
 
-// console.log(null == false); 
+// console.log(null == false);  //*
 
 // console.log(undefined == 0);
 // console.log(undefined > 0);

@@ -52,3 +52,10 @@ console.log(`\n typeof NaN = ${typeof NaN}`);
 
 
 
+
+/* can i create a custom data type in javascript ??
+
+Yes — you can create custom data types in JavaScript, but not in the same low-level way as C/C++ (where you define memory layouts).
+JavaScript is dynamically typed, so “custom data types” are created using language constructs rather than the type system itself.
+
+*/

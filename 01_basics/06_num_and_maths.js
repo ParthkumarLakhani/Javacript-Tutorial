@@ -411,3 +411,137 @@ console.log(alphaNumericOTP(6)); // Example: a7Ds2Q
 
 */
 
+/*
+In JavaScript, the built-in Math object is an intrinsic, static object that is part of the core JavaScript language, not an external library
+*/
+
+
+/* core module
+Node.js is a powerful JavaScript runtime environment built on Chrome’s V8 engine. One of the Important features that makes Node.js efficient and versatile is its rich set of core modules—built-in libraries that help developers build scalable and efficient applications without relying on third-party packages.
+
+
+http/https  : To make Node.js act as an http/https server
+fs          : (File System module), To handle the file system
+path        : (Directories and paths in node.js)  To handle file paths
+os          : (Operating System modules)    Provides information about the operation system
+events      : (Emit and listen events)
+crypto      : (Hashing and HMAC, ciphering)
+stream      : (Reading and writing streams of data)
+util        : (Formatting strings and debugging)
+dns         : (DNS lookup and name resolution functions)
+querystring : (Parsing and formatting URL query)
+zlib        : (Compression & Decompression)
+buffer      : (work with binary data and large files)
+url         : (Parsing and formatting URLs)
+net         : (Network capabilities creating server and clients)
+tls         : (Implement Transport and Security layers protocols)
+process     : (Process related tasks)
+readline    : (reading lines from readable streams)
+timers      : (Scheduling and Canceling of code)
+child_process : (Execution of external commands)
+
+*/
+
+
+/* what is module , package, library and framework ??
+
+Module  
+A module is a single file (or small unit) that contains related code. Think of a module as one room in a house 🏠
+
+In JavaScript / Node.js
+  // math.module.js
+  export function add(a, b) {
+    return a + b;
+  }
+
+Usage:
+  import { add } from './math.module.js';
+
+
+
+Package
+A package is a collection of modules, bundled together and distributed. Think of a package as a box containing multiple rooms 📦
+
+In Node.js
+A package:
+  Has package.json
+  Installed via npm / yarn / pnpm
+    npm install axios
+
+axios is a package, not a single module.
+
+Inside a Package
+axios/
+ ├─ index.js
+ ├─ lib/
+ │   ├─ core.js
+ │   ├─ helpers.js
+ ├─ package.json
+
+Key Points
+  Contains multiple modules
+  Distributed via npm
+  Versioned (1.6.2, etc.)
+
+
+
+Library
+A library is a collection of packages or modules that helps you do specific tasks, but YOU control the flow.  Think of a library as a toolbox 🧰
+You decide when and how to use each tool.
+that offers a wide set of functionalities to solve specific tasks. 
+
+| Library        | Purpose           |
+| -------------- | ----------------- |
+| Lodash         | Utility functions |
+| Axios          | HTTP requests     |
+| Moment / Dayjs | Date handling     |
+| bcrypt         | Password hashing  |
+
+Key Idea
+  Library works FOR you, but YOU are in charge
+
+
+
+
+Framework
+A framework is a complete structure that controls the flow of your application. Think of a framework as a full building plan 🏗️
+You just fill in the rooms.
+A framework is a comprehensive system that provides a foundation and architectural blueprint for developing an entire application. 
+
+
+Famous Line (Very Important)
+  Framework calls your code
+  Library is called by your code
+This is called Inversion of Control (IoC).
+
+| Framework | Use                     |
+| --------- | ----------------------- |
+| Express   | Web backend             |
+| NestJS    | Enterprise backend      |
+| React     | Frontend framework      |
+| Angular   | Full frontend framework |
+| Django    | Python backend          |
+
+
+
+
+🔁 Library vs Framework (MOST IMPORTANT)
+| Feature      | Library     | Framework          |
+| ------------ | ----------- | ------------------ |
+| Control flow | You control | Framework controls |
+| Structure    | Flexible    | Strict             |
+| Opinionated  | ❌ No       | ✅ Yes             |
+| Example      | Axios       | NestJS             |
+
+
+
+One-Line Interview Definitions
+  Module: Smallest reusable code unit
+  Package: Collection of modules with package.json
+  Library: Tools you call when needed
+  Framework: Structure that calls your code
+
+
+
+*/
+
